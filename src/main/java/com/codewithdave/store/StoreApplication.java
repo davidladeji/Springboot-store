@@ -17,7 +17,9 @@ public class StoreApplication {
 		var userService = context.getBean(UserService.class);
 		User user = new User(0, "test@gmail.com", "secure", "David Ladeji");
 		userService.registerUser(user);
-		// context.close();
+		
+		// Closing the application is a lifesaver when dealing with database migration files
+		context.close();
 
 		// // Lazy init bean
 		// context.getBean(HeavyResource.class);
