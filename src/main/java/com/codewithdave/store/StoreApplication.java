@@ -11,12 +11,12 @@ public class StoreApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 		
-		var orderService = context.getBean(OrderService.class);
-		orderService.placeOrder();
+		// var orderService = context.getBean(OrderService.class);
+		// orderService.placeOrder();
 
-		var userService = context.getBean(UserService.class);
-		User user = new User(0, "test@gmail.com", "secure", "David Ladeji");
-		userService.registerUser(user);
+		// var userService = context.getBean(UserService.class);
+		// User user = new User(0, "test@gmail.com", "secure", "David Ladeji");
+		// userService.registerUser(user);
 		
 		// Closing the application is a lifesaver when dealing with database migration files
 		context.close();
