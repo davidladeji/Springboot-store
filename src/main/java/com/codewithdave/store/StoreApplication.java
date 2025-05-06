@@ -3,9 +3,7 @@ package com.codewithdave.store;
 // import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.codewithdave.store.entities.Address;
 import com.codewithdave.store.entities.Profile;
-import com.codewithdave.store.entities.Tag;
 import com.codewithdave.store.entities.User;
 
 import org.springframework.boot.SpringApplication;
