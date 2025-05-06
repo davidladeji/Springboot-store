@@ -7,11 +7,3 @@ spring:
         password: L1ftOff$
     flyway:
         baseline-on-migrate: true
-stripe:
-    apiUrl: https://api.stripe.com
-    timeout: 1000
-    enabled: true
-    supported-currencies: USD,EUR,GBP
-payment-gateway: paypal
-host: HostName
-port: 8000
