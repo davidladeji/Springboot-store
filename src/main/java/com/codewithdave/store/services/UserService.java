@@ -2,8 +2,10 @@ package com.codewithdave.store.services;
 
 import org.springframework.stereotype.Service;
 
+import com.codewithdave.store.entities.Address;
 import com.codewithdave.store.entities.Profile;
 import com.codewithdave.store.entities.User;
+import com.codewithdave.store.repositories.AddressRepository;
 import com.codewithdave.store.repositories.ProfileRepository;
 import com.codewithdave.store.repositories.UserRepository;
 
@@ -17,6 +19,7 @@ public class UserService {
     
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
+    private final AddressRepository addressRepository;
     private final EntityManager entityManager;
 
     // This tag makes the persistent context open for the entire method as opposed to 
@@ -53,5 +56,30 @@ public class UserService {
         // var user = profile.getUser();
         // System.out.println(user.getName());
         System.out.println(profile.getBio());
+    }
+
+    public void fetchAddress(){
+        var address = addressRepository.findById(1L).orElseThrow();
+
+        System.out.println(address.getCity());
+    }
+
+    public void persistRelated(){
+        var user = User.builder()
+			.name("John Doe")
+			.email("johnsmith@gmail.com")
+			.password("password")
+			.build();
+
+
+        var address = Address.builder()
+            .city("city")
+            .state("state")
+            .zip("zip")
+            .street("street")
+            .build();
+
+            user.addAddress(address);
+            userRepository.save(user);
     }
 }
