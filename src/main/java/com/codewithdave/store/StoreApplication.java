@@ -4,6 +4,7 @@ package com.codewithdave.store;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.codewithdave.store.entities.Address;
+import com.codewithdave.store.entities.Tag;
 import com.codewithdave.store.entities.User;
 
 import org.springframework.boot.SpringApplication;
@@ -20,15 +21,9 @@ public class StoreApplication {
 			.password("password")
 			.build();
 
-		var address = Address.builder()
-			.street("street")
-			.city("city")
-			.state("state")
-			.zip("zip")
-			.build();
-
-		user.addAddress(address);
+		user.addTag("tag1");
 		System.out.println(user);
+
 	}
 
 }

@@ -40,7 +40,7 @@ public class Address {
     private String state;
 
     @ManyToOne
-    ToString.Exclude
+    @ToString.Exclude
     @JoinColumn(name = "user_id")
     private User user;
 }
