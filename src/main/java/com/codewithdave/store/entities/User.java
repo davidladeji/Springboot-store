@@ -14,7 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,6 +63,10 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> tags = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    @MapsId
+    private Profile profile;
 
     // Builder.Default is used to make sure data parameters are initialized when using the builder
     // design pattern

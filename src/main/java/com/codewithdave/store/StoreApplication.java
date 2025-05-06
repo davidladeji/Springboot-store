@@ -4,6 +4,7 @@ package com.codewithdave.store;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.codewithdave.store.entities.Address;
+import com.codewithdave.store.entities.Profile;
 import com.codewithdave.store.entities.Tag;
 import com.codewithdave.store.entities.User;
 
@@ -22,6 +23,13 @@ public class StoreApplication {
 			.build();
 
 		user.addTag("tag1");
+
+		var profile = Profile.builder()
+			.bio("bio")
+			.build();
+
+		user.setProfile(profile);
+		profile.setUser(user);
 		System.out.println(user);
 
 	}
