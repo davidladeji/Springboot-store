@@ -65,7 +65,6 @@ public class User {
     private Set<Tag> tags = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
-    @MapsId
     private Profile profile;
 
     // Builder.Default is used to make sure data parameters are initialized when using the builder
