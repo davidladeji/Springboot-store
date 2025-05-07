@@ -67,6 +67,15 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Profile profile;
 
+    @ManyToMany
+    @Builder.Default
+    @JoinTable(
+        name = "wishlist",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> wishlist = new HashSet<>();
+
     // Builder.Default is used to make sure data parameters are initialized when using the builder
     // design pattern
 
