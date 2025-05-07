@@ -1,11 +1,17 @@
 package com.codewithdave.store.services;
 
+import java.util.HashSet;
+
 import org.springframework.stereotype.Service;
 
 import com.codewithdave.store.entities.Address;
+import com.codewithdave.store.entities.Category;
+import com.codewithdave.store.entities.Product;
 import com.codewithdave.store.entities.Profile;
 import com.codewithdave.store.entities.User;
 import com.codewithdave.store.repositories.AddressRepository;
+import com.codewithdave.store.repositories.CategoryRepository;
+import com.codewithdave.store.repositories.ProductRepository;
 import com.codewithdave.store.repositories.ProfileRepository;
 import com.codewithdave.store.repositories.UserRepository;
 
@@ -16,7 +22,9 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class UserService {
-    
+
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
     private final AddressRepository addressRepository;
@@ -88,5 +96,21 @@ public class UserService {
         var user = userRepository.findById(5L).orElseThrow();
         Address address = user.getAddresses().get(0);
         user.removeAddress(address);
+    }
+
+    public void createProduct(){
+        // Create product with dummy data
+        var product = Product.builder()
+            .name("Milk")
+            .price(10)
+            .description("description")
+            .build();
+        
+        var category = Category.builder()
+            .name("dairy")
+            .build();
+
+        category.addProduct(product);
+        categoryRepository.save(category);
     }
 }

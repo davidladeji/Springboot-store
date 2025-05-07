@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +18,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "products")
 @Entity
@@ -31,6 +35,9 @@ public class Product {
 
     @Column(name = "price")
     private double price;
+
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
