@@ -113,4 +113,20 @@ public class UserService {
         category.addProduct(product);
         categoryRepository.save(category);
     }
+
+    @Transactional
+    public void newProductIntoCategory(){
+        // Create another dairy product
+        var product = Product.builder()
+        .name("New new product")
+        .price(10)
+        .description("description")
+        .build();
+
+        Integer id = 1;
+
+        var category = categoryRepository.findById(id.byteValue()).orElseThrow();
+        product.setCategory(category);
+        productRepository.save(product);
+    }
 }
