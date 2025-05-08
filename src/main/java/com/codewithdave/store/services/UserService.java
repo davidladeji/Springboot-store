@@ -118,7 +118,7 @@ public class UserService {
     public void newProductIntoCategory(){
         // Create another dairy product
         var product = Product.builder()
-        .name("New new product")
+        .name("New product")
         .price(10)
         .description("description")
         .build();
@@ -137,5 +137,10 @@ public class UserService {
         productRepository.findAll().forEach(product -> user.addToWishlist(product));
 
         userRepository.save(user);
+    }
+
+    @Transactional
+    public void deleteProduct() {
+        productRepository.deleteById(4L);
     }
 }
