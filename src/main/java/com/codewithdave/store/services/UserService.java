@@ -129,4 +129,13 @@ public class UserService {
         product.setCategory(category);
         productRepository.save(product);
     }
+
+    @Transactional
+    public void addToWishlist(){
+        // Add all existing products to wishlist
+        var user = userRepository.findById(1L).orElseThrow();
+        productRepository.findAll().forEach(product -> user.addToWishlist(product));
+
+        userRepository.save(user);
+    }
 }

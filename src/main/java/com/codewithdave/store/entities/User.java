@@ -111,4 +111,13 @@ public class User {
 
         // Error, tag wasn't found or not successfully removed
     }
+
+
+    public void addToWishlist(Product product){
+        this.wishlist.add(product);
+    }
+
+    public void removeFromWishlist(Product product){
+        this.wishlist.remove(product);
+    }
 }
