@@ -23,13 +23,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "users")
@@ -80,6 +78,14 @@ public class User {
     // design pattern
 
     // @ToString provides a tostring method for the dev
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "( " +
+            "id = " + id + ", " +
+            "name = " + name + ", " +
+            "email = " + email + " )";
+    }
 
     public void addAddress(Address address){
         addresses.add(address);
