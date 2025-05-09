@@ -149,7 +149,6 @@ public class UserService {
         productRepository.updatePriceByCategory(15, (byte)1);
     }
 
-    @Transactional
     public void fetchProducts() {
         var products = productRepository.findByCategory(new Category((byte)1));
         products.forEach(p -> System.out.println(p));
