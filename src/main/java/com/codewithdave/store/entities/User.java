@@ -62,8 +62,8 @@ public class User {
     )
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Profile profile;
+    // @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    // private Profile profile;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
     @Builder.Default

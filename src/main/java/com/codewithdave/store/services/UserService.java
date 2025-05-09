@@ -154,8 +154,24 @@ public class UserService {
         products.forEach(p -> System.out.println(p));
     }
 
-    public void fetchUser(){
-        var user = userRepository.findByEmail("johnsmith@gmail.com").orElseThrow();
-        System.out.println(user);
+    @Transactional
+    public void fetchUsers(){
+        var users = userRepository.findAllWithAddresses();
+        users.forEach( user -> {
+            System.out.println(user);
+            user.getAddresses().forEach(System.out::println);
+        });
+    }
+
+    @Transactional
+    public void addAddress(){
+        var address = Address.builder()
+            .city("city 3")
+            .state("state")
+            .zip("zip")
+            .street("street")
+            .build();
+
+        userRepository.findById(2L).orElseThrow().addAddress(address);
     }
 }
