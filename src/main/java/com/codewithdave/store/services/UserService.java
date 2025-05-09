@@ -143,4 +143,9 @@ public class UserService {
     public void deleteProduct() {
         productRepository.deleteById(4L);
     }
+
+    @Transactional
+    public void updateProductPrices(){
+        productRepository.updatePriceByCategory(15, (byte)1);
+    }
 }
