@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.codewithdave.store.dtos.ProductSummary;
+import com.codewithdave.store.dtos.ProductSummaryDTO;
+import com.codewithdave.store.entities.Category;
 import com.codewithdave.store.entities.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
@@ -50,4 +53,12 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
   @Modifying
   @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
   void updatePriceByCategory(double newPrice, Byte categoryId);
+
+//   Projections (class version)
+  @Query("select new com.codewithdave.store.dtos.ProductSummaryDTO(p.id, p.name) from Product p where p.category = :category")
+  List<ProductSummaryDTO> findByCategory(@Param("category") Category category);
+
+//   Projections (interface version)
+//   @Query("select p.id, p.name from Product p where p.category = :category")
+//   List<ProductSummary> findByCategory(@Param("category") Category category);
 }
