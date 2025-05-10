@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.codewithdave.store.entities.Address;
@@ -17,6 +18,7 @@ import com.codewithdave.store.repositories.CategoryRepository;
 import com.codewithdave.store.repositories.ProductRepository;
 import com.codewithdave.store.repositories.ProfileRepository;
 import com.codewithdave.store.repositories.UserRepository;
+import com.codewithdave.store.repositories.specifications.ProductSpec;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -200,5 +202,17 @@ public class UserService {
     public void fetchProductsByCriteria(){
         var products = productRepository.findProductsByCriteria("product", 1, 10);
         products.forEach(System.out::println);
+    }
+
+    public void fetchProductsBySpecifications(String name, double minPrice, double maxPrice){
+        Specification<Product> spec = Specification.where(null);
+
+        if (name != null) {
+            spec = spec.and(ProductSpec.hasName(name));
+        }
+        spec.and(ProductSpec.hasPriceGreaterThanOrEqualTo(maxPrice));
+        spec.and(ProductSpec.hasPriceLessThanOrEqualTo(minPrice));
+
+        productRepository.findAll(spec).forEach(System.out::println);
     }
 }

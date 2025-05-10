@@ -3,6 +3,7 @@ package com.codewithdave.store.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -12,7 +13,7 @@ import com.codewithdave.store.dtos.ProductSummaryDTO;
 import com.codewithdave.store.entities.Category;
 import com.codewithdave.store.entities.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository, JpaSpecificationExecutor {
     // String
   List<Product> findByName(String name);
   List<Product> findByNameLike(String name);
