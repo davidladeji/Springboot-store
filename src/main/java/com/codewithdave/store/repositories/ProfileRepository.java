@@ -11,8 +11,9 @@ import java.util.List;
 
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
+    // Obsolete. Moved to User Repository
     @EntityGraph(attributePaths = "user")
-    @Query("select p from Profile p where p.loyaltyPoints > :loyaltyPoints order by p.user.email")
+    @Query("select p.id as id, p.user.email as email from Profile p where p.loyaltyPoints > :loyaltyPoints order by p.user.email")
     List<UserSummary> findByLoyaltyPoints(@Param("loyaltyPoints") int loyaltyPoints);
 
     // Derived Query Equivalent
