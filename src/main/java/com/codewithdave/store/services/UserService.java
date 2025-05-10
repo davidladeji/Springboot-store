@@ -1,5 +1,6 @@
 package com.codewithdave.store.services;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 
 import org.springframework.stereotype.Service;
@@ -174,5 +175,14 @@ public class UserService {
             .build();
 
         userRepository.findById(2L).orElseThrow().addAddress(address);
+    }
+    
+    @Transactional
+    public void workWithProfiles(){
+        var profiles = profileRepository.findByLoyaltyPoints(2);
+        profiles.forEach(p -> {
+            System.out.println(p.getId());
+            System.out.println(p.getUser().getEmail());
+        });
     }
 }
