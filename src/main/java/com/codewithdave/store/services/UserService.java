@@ -3,6 +3,8 @@ package com.codewithdave.store.services;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import com.codewithdave.store.entities.Address;
@@ -152,7 +154,16 @@ public class UserService {
 
     @Transactional
     public void fetchProducts() {
-        var products = productRepository.findProducts(1, 15);
+        var product = new Product();
+        product.setName("product");
+
+        var matcher = ExampleMatcher.matching()
+            .withIncludeNullValues()
+            .withIgnorePaths("id", "description")
+            .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        var example = Example.of(product, matcher);
+        var products = productRepository.findAll(example);
         products.forEach(p -> System.out.println(p));
     }
 
