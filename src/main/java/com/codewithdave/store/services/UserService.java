@@ -179,10 +179,10 @@ public class UserService {
     
     @Transactional
     public void workWithProfiles(){
-        var userProfiles = userRepository.findByProfileLoyaltyPoints(2);
-        userProfiles.forEach(p -> {
-            System.out.println(p.getId());
-            System.out.println(p.getEmail());
+        var users = userRepository.findLoyalUsers(2);
+        users.forEach(user -> {
+            System.out.println(user.getId());
+            System.out.println(user.getEmail());
         });
     }
 }
