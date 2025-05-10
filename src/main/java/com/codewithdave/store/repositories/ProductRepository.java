@@ -12,7 +12,7 @@ import com.codewithdave.store.dtos.ProductSummaryDTO;
 import com.codewithdave.store.entities.Category;
 import com.codewithdave.store.entities.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository {
     // String
   List<Product> findByName(String name);
   List<Product> findByNameLike(String name);

@@ -196,4 +196,9 @@ public class UserService {
             System.out.println(user.getEmail());
         });
     }
+
+    public void fetchProductsByCriteria(){
+        var products = productRepository.findProductsByCriteria("product", 1, 10);
+        products.forEach(System.out::println);
+    }
 }
